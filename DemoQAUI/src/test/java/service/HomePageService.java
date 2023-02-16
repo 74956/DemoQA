@@ -7,7 +7,7 @@ public class HomePageService extends BasePageService {
 
     public BookStorePageService clickOnCard(String cardTitle) {
         logger.info("Click on " + cardTitle);
-        homePage.clickOnCard(cardTitle);
+        homePage.clickOnCardFromHomePage(cardTitle);
         return new BookStorePageService();
     }
 }

@@ -15,4 +15,9 @@ public class BasePageService {
         logger.info("Footer is displayed - " + result);
         return result;
     }
+
+    public void clickOnBookStoreAppItem(String itemName) {
+        basePage.clickOnBookStoreAppItem(itemName);
+        logger.info("Footer is displayed - ");
+    }
 }
