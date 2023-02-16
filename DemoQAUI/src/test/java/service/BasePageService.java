@@ -1,5 +1,6 @@
 package service;
 
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.BasePage;
@@ -19,5 +20,9 @@ public class BasePageService {
     public void clickOnBookStoreAppItem(String itemName) {
         basePage.clickOnBookStoreAppItem(itemName);
         logger.info("Footer is displayed - ");
+    }
+
+    public void clickOnElementWithJavaScript(WebElement element){
+        basePage.clickOnElementWithJavaScript(element);
     }
 }

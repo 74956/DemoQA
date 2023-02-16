@@ -15,8 +15,8 @@ public class BaseTest {
         Driver.waiters();
     }
 
-    @After
-    public void stopBrowser() {
-        Driver.closeBrowser();
-    }
+//    @After
+//    public void stopBrowser() {
+//        Driver.closeBrowser();
+//    }
 }

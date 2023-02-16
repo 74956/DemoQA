@@ -15,9 +15,9 @@ public class BasePage {
         this.driver = Driver.getDriver();
     }
 
-//    public WebDriver getDriver() {
-//        return driver;
-//    }
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     public WebElement getFooter() {
         return driver.findElement(By.xpath("//footer"));
@@ -49,6 +49,8 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-
+    public void clickOnElementWithJavaScript(WebElement element){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
 
 }

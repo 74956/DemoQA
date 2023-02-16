@@ -9,6 +9,7 @@ import java.util.List;
 public class BookStorePageService extends BasePageService {
 
     private BookStorePage bookStorePage = new BookStorePage();
+    private Util util = new Util();
 
     public boolean isBooksTableDisplayed() {
         boolean result = bookStorePage.isBooksTableDisplayed();
@@ -31,7 +32,7 @@ public class BookStorePageService extends BasePageService {
     public BookDescriptionPageService addBook() {
         logger.info("Add random book to collection");
         List<WebElement> listOfBooks = bookStorePage.listOfBooks();
-        Util.clickOnRandomElement(listOfBooks);
+        util.clickOnRandomElement(listOfBooks);
         return new BookDescriptionPageService();
     }
 }
