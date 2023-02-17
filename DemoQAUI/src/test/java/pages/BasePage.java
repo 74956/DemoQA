@@ -11,12 +11,8 @@ public class BasePage {
     protected WebDriver driver;
     private Waiters wait = new Waiters();
 
-    public BasePage() {
-        this.driver = Driver.getDriver();
-    }
-
-    public WebDriver getDriver() {
-        return driver;
+    public BasePage(WebDriver webDriver) {
+        this.driver = webDriver;
     }
 
     public WebElement getFooter() {
@@ -40,10 +36,10 @@ public class BasePage {
         return getFooter().isDisplayed();
     }
 
-    public void clickOnLogin() {
-        wait.elementToBeClickable(getLogin());
-        clickOnElementWithJavaScript(getLogin());
-    }
+//    public void clickOnLogin() {
+//        wait.elementToBeClickable(getLogin());
+//        clickOnElementWithJavaScript(getLogin());
+//    }
 
     public void clickOnBookStoreAppItem(String itemName) {
         getBookstoreAppItem(itemName).click();
@@ -57,7 +53,7 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
-    public void clickOnButton(String buttonText) {
+    public void clickOnButton(String buttonText) { //удалить. сделать на нужные страницы
         clickOnElementWithJavaScript(getDeletionPopUp(buttonText));
     }
 }

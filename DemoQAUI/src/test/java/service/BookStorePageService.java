@@ -1,5 +1,6 @@
 package service;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BookStorePage;
 import utils.Util;
@@ -8,8 +9,14 @@ import java.util.List;
 
 public class BookStorePageService extends BasePageService {
 
-    private BookStorePage bookStorePage = new BookStorePage();
+    protected WebDriver driver;
+    private BookStorePage bookStorePage;
     private Util util = new Util();
+
+    public BookStorePageService(WebDriver driver) {
+        super(driver);
+        this.bookStorePage = new BookStorePage(driver);
+    }
 
     public boolean isBooksTableDisplayed() {
         boolean result = bookStorePage.isBooksTableDisplayed();
@@ -20,7 +27,7 @@ public class BookStorePageService extends BasePageService {
     public LoginPageService clickOnLogin() {
         logger.info("Click on Login button");
         bookStorePage.clickOnLoginButton();
-        return new LoginPageService();
+        return new LoginPageService(driver);
     }
 
     public boolean isUserNameDisplayed() {

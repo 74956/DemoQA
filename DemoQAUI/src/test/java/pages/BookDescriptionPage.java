@@ -1,9 +1,14 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BookDescriptionPage extends BasePage {
+    public BookDescriptionPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+    //тут оставить только кнопку о добавлении в коллекцию
 
     public WebElement getAddNewRecordButton(String buttonText) {
         return driver.findElement(By.xpath(String.format("//button[@id='addNewRecordButton' and contains(text(),'%s')]/parent::div",

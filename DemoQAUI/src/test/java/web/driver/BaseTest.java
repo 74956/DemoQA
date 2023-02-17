@@ -3,10 +3,13 @@ package web.driver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import service.BasePageService;
 
 public class BaseTest {
 
-    private static WebDriver driver;
+    private BasePageService basePageService;
+
+    protected WebDriver driver;
 
     @BeforeClass
     public void setUp() {

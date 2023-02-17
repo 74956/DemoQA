@@ -1,12 +1,17 @@
 package service;
 
+import org.openqa.selenium.WebDriver;
 import pages.BookDescriptionPage;
 import utils.AlertAndIframeUtil;
 
 public class BookDescriptionPageService extends BasePageService {
 
-    private BookDescriptionPage bookDescriptionPage = new BookDescriptionPage();
+    private BookDescriptionPage bookDescriptionPage;
     private AlertAndIframeUtil alertAndIframeUtil = new AlertAndIframeUtil();
+
+    public BookDescriptionPageService(WebDriver driver) {
+        super(driver);
+    }
 
     public void clickOnAddNewRecordButton(String buttonText) {
         logger.info("Click on " + buttonText + " button");

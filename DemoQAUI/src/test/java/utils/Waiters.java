@@ -26,17 +26,6 @@ public class Waiters {
         return wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public WebElement elementToBeClickable(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    public WebElement elementToBeVisible(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfAllElements());
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
     public WebElement fluentWaitElementToBeClickable(WebElement element) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(5))

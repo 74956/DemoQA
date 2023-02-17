@@ -1,3 +1,4 @@
 rootProject.name = 'DemoQA'
 include 'DemoQAUI'
+include 'DemoQAAPI'
 

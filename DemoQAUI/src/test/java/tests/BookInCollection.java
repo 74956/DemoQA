@@ -1,6 +1,7 @@
 package tests;
 
 import object.User;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class BookInCollection extends BaseTest {
 
-    private final HomePageService homePageService = new HomePageService();
+    private HomePageService homePageService = new HomePageService(driver);
     private BookStorePageService bookStorePageService;
     private LoginPageService loginPageService;
     private BookDescriptionPageService bookDescriptionPageService;
@@ -41,7 +42,7 @@ public class BookInCollection extends BaseTest {
 
     @Test
     public void addBooksToCollection() {
-        boolean result = profilePageService.ifBookExitInCollection(bookTitle);
+        boolean result = profilePageService.ifBookExitInCollection(bookTitle); //юзер логинится добавляет книгу с опред. именем. книгу проверить полнеоценным объектом через csv
         Assert.assertTrue(result);
     }
 
@@ -49,6 +50,8 @@ public class BookInCollection extends BaseTest {
     public void deleteBooksFromCollection() {
         profilePageService.deleteBook(bookTitle);
         List<String> actualListOfBooksTitle = profilePageService.bookTitlesList();
-        Assert.assertFalse(actualListOfBooksTitle.contains(bookTitle));
+        Assert.assertFalse(actualListOfBooksTitle.contains(bookTitle)); //логин, добавить и проверить, что удалена, полно
     }
+
+    //удалить книгу. с помощью апи. log out
 }
