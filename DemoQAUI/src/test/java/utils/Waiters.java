@@ -21,7 +21,7 @@ public class Waiters {
         this.driver = Driver.getDriver();
     }
 
-    public Alert waitTillAlertIsNotPresent(){
+    public Alert waitTillAlertIsPresent() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.alertIsPresent());
     }
@@ -37,7 +37,7 @@ public class Waiters {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public WebElement fluentWaitElementToBeClickable(WebElement element){
+    public WebElement fluentWaitElementToBeClickable(WebElement element) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofSeconds(2))

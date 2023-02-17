@@ -29,7 +29,7 @@ public class BookStorePageService extends BasePageService {
         return result;
     }
 
-    public BookDescriptionPageService addBook() {
+    public BookDescriptionPageService clickOnRandomBook() {
         logger.info("Add random book to collection");
         List<WebElement> listOfBooks = bookStorePage.listOfBooks();
         util.clickOnRandomElement(listOfBooks);

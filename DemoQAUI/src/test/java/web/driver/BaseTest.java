@@ -1,22 +1,22 @@
 package web.driver;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
 
     private static WebDriver driver;
 
-    @Before
+    @BeforeClass
     public void setUp() {
         driver = Driver.getDriver();
         Driver.openURL();
         Driver.waiters();
     }
 
-//    @After
-//    public void stopBrowser() {
-//        Driver.closeBrowser();
-//    }
+    @AfterClass
+    public void stopBrowser() {
+        Driver.closeBrowser();
+    }
 }

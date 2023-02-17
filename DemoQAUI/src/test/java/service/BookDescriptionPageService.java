@@ -15,7 +15,9 @@ public class BookDescriptionPageService extends BasePageService {
     }
 
     public String getBookTitleText() {
-        return bookDescriptionPage.getBookTitle();
+        String bookName = bookDescriptionPage.getBookTitle();
+        logger.info("The book name is - " + bookName);
+        return bookName;
     }
 
     public ProfilePageService clickOnCard(String cardTitle) {

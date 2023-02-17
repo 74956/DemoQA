@@ -22,7 +22,12 @@ public class BasePageService {
         logger.info("Footer is displayed - ");
     }
 
-    public void clickOnElementWithJavaScript(WebElement element){
+    public void clickOnElementWithJavaScript(WebElement element) {
         basePage.clickOnElementWithJavaScript(element);
+    }
+
+    public void clickOnButton(String buttonText) {
+        logger.info("Click on button with name - " + buttonText);
+        basePage.clickOnButton(buttonText);
     }
 }

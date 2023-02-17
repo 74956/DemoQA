@@ -6,14 +6,14 @@ import web.driver.Driver;
 public class AlertAndIframeUtil {
 
     protected WebDriver driver;
-    private Waiters waiters = new Waiters();
+    private final Waiters waiters = new Waiters();
 
     public AlertAndIframeUtil() {
         this.driver = Driver.getDriver();
     }
 
     public void alertAccept() {
-        waiters.waitTillAlertIsNotPresent();
+        waiters.waitTillAlertIsPresent();
         driver.switchTo().alert().accept();
     }
 }

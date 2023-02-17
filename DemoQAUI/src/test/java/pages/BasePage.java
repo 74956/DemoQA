@@ -32,13 +32,17 @@ public class BasePage {
                 itemName)));
     }
 
+    public WebElement getDeletionPopUp(String buttonText) {
+        return driver.findElement(By.xpath(String.format("//button[contains(text(),'%s')]", buttonText)));
+    }
+
     public boolean isFooterDisplayed() {
         return getFooter().isDisplayed();
     }
 
     public void clickOnLogin() {
         wait.elementToBeClickable(getLogin());
-        getLogin().click();
+        clickOnElementWithJavaScript(getLogin());
     }
 
     public void clickOnBookStoreAppItem(String itemName) {
@@ -49,8 +53,11 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void clickOnElementWithJavaScript(WebElement element){
+    public void clickOnElementWithJavaScript(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
+    public void clickOnButton(String buttonText) {
+        clickOnElementWithJavaScript(getDeletionPopUp(buttonText));
+    }
 }

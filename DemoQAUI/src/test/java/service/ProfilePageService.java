@@ -17,10 +17,54 @@ public class ProfilePageService extends BasePageService {
     public void deleteBook(String bookTitleDelete) {
         List<String> booksTitle = bookTitlesList();
         for (String s : booksTitle) {
-            if (s.contains(bookTitleDelete)) {
-                profilePage.deleteBook();
-                alertAndIframeUtil.alertAccept();
+            if (s.equals(bookTitleDelete)) {
+                logger.info("Delete book - " + bookTitleDelete);
+                deleteElement();
+            } else {
+                if (pagesWithBooks() > 1) {
+                    clickOnButton("Next");
+                    List<String> booksTitles = bookTitlesList();
+                    for (String title : booksTitles) {
+                        if (title.equals(bookTitleDelete)) {
+                            logger.info("Delete book - " + title);
+                            deleteElement();
+                        }
+                    }
+                }
             }
         }
+    }
+
+    public boolean ifBookExitInCollection(String bookTitle) {
+        List<String> listOfBooks = bookTitlesList();
+        for (String s : listOfBooks) {
+            if (s.equals(bookTitle)) {
+                logger.info("Added book - " + s);
+                return true;
+            } else {
+                if (pagesWithBooks() > 1) {
+                    clickOnButton("Next");
+                    List<String> booksTitles = bookTitlesList();
+                    for (String title : booksTitles) {
+                        if (title.equals(bookTitle)) {
+                            logger.info("Added book - " + title);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+    private Integer pagesWithBooks() {
+        return profilePage.quantityPagesInProfile();
+    }
+
+    private void deleteElement() {
+        profilePage.deleteBook();
+        clickOnButton("OK");
+        alertAndIframeUtil.alertAccept();
     }
 }
