@@ -10,12 +10,20 @@ public class LoginPage extends BasePage {
         super(webDriver);
     }
 
+    public WebElement getLogin() {
+        return driver.findElement(By.xpath("//button[@id='login']"));
+    }
+
     public WebElement getUserName() {
         return driver.findElement(By.xpath("//input[@id='userName']"));
     }
 
     public WebElement getUserPassword() {
         return driver.findElement(By.xpath("//input[@id='password']"));
+    }
+
+    public void clickOnLogin() {
+        getLogin().click();
     }
 
     public void inputUserName(String userName) {
@@ -27,10 +35,4 @@ public class LoginPage extends BasePage {
         getUserPassword().clear();
         getUserPassword().sendKeys(password);
     }
-
-    //from basepage
-//    public void clickLogIn() {
-//        clickOnLogin();
-//    }
-
 }

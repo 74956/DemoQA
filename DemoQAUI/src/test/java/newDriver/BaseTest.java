@@ -1,13 +1,10 @@
-package web.driver;
+package newDriver;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import service.BasePageService;
 
 public class BaseTest {
-
-    private BasePageService basePageService;
 
     protected WebDriver driver;
 

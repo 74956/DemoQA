@@ -10,22 +10,22 @@ public class BookDescriptionPage extends BasePage {
     }
     //тут оставить только кнопку о добавлении в коллекцию
 
-    public WebElement getAddNewRecordButton(String buttonText) {
-        return driver.findElement(By.xpath(String.format("//button[@id='addNewRecordButton' and contains(text(),'%s')]/parent::div",
-                buttonText)));
+    public WebElement addIntoCollectionButton() {
+        return driver.findElement(By.xpath("//div[contains(@class,'right')]/button[@id='addNewRecordButton']"));
     }
 
-    public WebElement getTitle() {
-        return driver.findElement(By.xpath("//div[@id='title-wrapper']//label[@id='userName-value']"));
+    public WebElement getBookFields(String label) {
+        String BOOK_LABEL_TEXT = "/parent::div/following-sibling::div/label[@id='userName-value']";
+        return driver.findElement(By.xpath(String.format("//label[contains(@id,'%s')]", label) + BOOK_LABEL_TEXT));
     }
 
-    public void clickOnAddNewRecordButton(String buttonText) {
-        scrollToElement(getAddNewRecordButton(buttonText));
-        getAddNewRecordButton(buttonText).click();
+    public void clickOnAddBookButton() {
+        scrollToElement(addIntoCollectionButton());
+        addIntoCollectionButton().click();
     }
 
-    public String getBookTitle() {
-        return getTitle().getText();
+    public String getBookFieldsText(String label) {
+        return getBookFields(label).getText();
     }
 
     public WebElement getBookStoreAppElement(String cardTitle) {

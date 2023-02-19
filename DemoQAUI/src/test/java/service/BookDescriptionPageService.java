@@ -1,5 +1,6 @@
 package service;
 
+import object.Book;
 import org.openqa.selenium.WebDriver;
 import pages.BookDescriptionPage;
 import utils.AlertAndIframeUtil;
@@ -11,24 +12,32 @@ public class BookDescriptionPageService extends BasePageService {
 
     public BookDescriptionPageService(WebDriver driver) {
         super(driver);
+        this.bookDescriptionPage = new BookDescriptionPage(driver);
     }
 
-    public void clickOnAddNewRecordButton(String buttonText) {
-        logger.info("Click on " + buttonText + " button");
-        bookDescriptionPage.clickOnAddNewRecordButton(buttonText);
+    public void clickOnAddBookIntoCollectionButton() {
+        logger.info("Add book into collection");
+        bookDescriptionPage.clickOnAddBookButton();
         alertAndIframeUtil.alertAccept();
-    }
-
-    public String getBookTitleText() {
-        String bookName = bookDescriptionPage.getBookTitle();
-        logger.info("The book name is - " + bookName);
-        return bookName;
     }
 
     public ProfilePageService clickOnCard(String cardTitle) {
         logger.info("Click on " + cardTitle);
         bookDescriptionPage.clickOnBookStoreAppElement(cardTitle);
-        return new ProfilePageService();
+        return new ProfilePageService(driver);
+    }
+
+    public Book getActualBook() {
+        Book book = new Book();
+        book.setIsbn(bookDescriptionPage.getBookFieldsText("ISBN"));
+        book.setTitle(bookDescriptionPage.getBookFieldsText("title"));
+        book.setSubTitle(bookDescriptionPage.getBookFieldsText("subtitle"));
+        book.setAuthor(bookDescriptionPage.getBookFieldsText("author"));
+        book.setPublisher(bookDescriptionPage.getBookFieldsText("publisher"));
+        book.setPages(bookDescriptionPage.getBookFieldsText("pages"));
+        book.setDescription(bookDescriptionPage.getBookFieldsText("description"));
+        book.setWebsite(bookDescriptionPage.getBookFieldsText("website"));
+        return book;
     }
 
 }

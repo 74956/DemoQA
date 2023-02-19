@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.Waiters;
-import web.driver.Driver;
 
 public class BasePage {
     protected WebDriver driver;
@@ -17,10 +16,6 @@ public class BasePage {
 
     public WebElement getFooter() {
         return driver.findElement(By.xpath("//footer"));
-    }
-
-    public WebElement getLogin() {
-        return driver.findElement(By.xpath("//button[contains(text(),'Login')]"));
     }
 
     public WebElement getBookstoreAppItem(String itemName) {
@@ -35,11 +30,6 @@ public class BasePage {
     public boolean isFooterDisplayed() {
         return getFooter().isDisplayed();
     }
-
-//    public void clickOnLogin() {
-//        wait.elementToBeClickable(getLogin());
-//        clickOnElementWithJavaScript(getLogin());
-//    }
 
     public void clickOnBookStoreAppItem(String itemName) {
         getBookstoreAppItem(itemName).click();

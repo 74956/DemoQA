@@ -1,36 +1,37 @@
 package service;
 
-import Util.PathString;
+import Enums.PathString;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import java.io.Serializable;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
 public class ResponseService {
+    public static final Gson GSON = new GsonBuilder().create();
+
     public static Response getResponse(Method method, RequestSpecification requestSpecification) {
         requestSpecification
-                .baseUri(PathString.URL.getPath())
+                .baseUri(PathString.SITE_URL.getPath())
                 .contentType(ContentType.JSON)
-                .log().method()
-                .log().uri().log().headers();
+                .log().uri()
+                .when()
+                .get()
+                .then()
+                .extract()
+                .response()
+                .prettyPrint();
         return requestSpecification.request(method);
     }
 
-    public static Response getModelResponse(String path) {
+    public static Response sendModel(Method method, String path, Object model) {
         RequestSpecification requestSpecification = given()
-                .basePath(path);
-        return getResponse(Method.GET, requestSpecification);
-    }
-
-    public static Response getModelWithQueryParam(String path, Map<String, ? extends Serializable> map) {
-        RequestSpecification requestSpecification = given()
-                .basePath(path);
-        map.forEach(requestSpecification::queryParam);
-        return getResponse(Method.GET, requestSpecification);
+                .basePath(path)
+                .body(GSON.toJson(model));
+        return getResponse(method, requestSpecification);
     }
 }

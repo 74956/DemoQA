@@ -7,18 +7,11 @@ import pages.BasePage;
 
 public class BasePageService {
     private BasePage basePage;
-    private WebDriver driver;
+    protected WebDriver driver;
     protected static final Logger logger = LoggerFactory.getLogger(BasePageService.class);
 
     public BasePageService(WebDriver driver) {
         this.driver = driver;
         this.basePage = new BasePage(driver);
     }
-
-
-
-//    public void clickOnButton(String buttonText) {
-//        logger.info("Click on button with name - " + buttonText);
-//        basePage.clickOnButton(buttonText);
-//    }
 }

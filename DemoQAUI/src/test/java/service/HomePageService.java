@@ -5,11 +5,10 @@ import pages.HomePage;
 
 public class HomePageService extends BasePageService {
     private HomePage homePage;
-    protected WebDriver driver;
 
     public HomePageService(WebDriver driver) {
         super(driver);
-        this.homePage=new HomePage(driver);
+        this.homePage = new HomePage(driver);
     }
 
     public BookStorePageService clickOnCard(String cardTitle) {

@@ -2,8 +2,8 @@ plugins {
     id "java"
 }
 
-group = "com.DemoQA"
-description = "DemoQA"
+group = "com.DemoQAUI"
+description = "DemoQAUI"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 dependencies {

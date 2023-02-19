@@ -1,7 +1,7 @@
 package utils;
 
+import newDriver.Driver;
 import org.openqa.selenium.WebDriver;
-import web.driver.Driver;
 
 public class AlertAndIframeUtil {
 
