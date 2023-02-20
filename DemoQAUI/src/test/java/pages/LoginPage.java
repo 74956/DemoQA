@@ -23,7 +23,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickOnLogin() {
-        getLogin().click();
+        clickOnElementWithJavaScript(getLogin());
     }
 
     public void inputUserName(String userName) {

@@ -19,15 +19,17 @@ import java.util.List;
 
 public class BookInCollection extends BaseTest {
 
-    private HomePageService homePageService = new HomePageService(driver);
-    private BookStorePageService bookStorePageService;
-    private LoginPageService loginPageService = new LoginPageService(driver);
     private BookDescriptionPageService bookDescriptionPageService;
     private ProfilePageService profilePageService;
-    private TableService tableService = new TableService(driver);
 
     @BeforeClass
     public void login() {
+
+        HomePageService homePageService = new HomePageService(driver);
+        BookStorePageService bookStorePageService;
+        LoginPageService loginPageService = new LoginPageService(driver);
+        TableService tableService = new TableService(driver);
+
         User user = UserService.credentials();
 
         bookStorePageService = homePageService.clickOnCard("Book Store Application");

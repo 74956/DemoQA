@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 import utils.Waiters;
 
 public class BasePage {
-    protected WebDriver driver;
-    private Waiters wait = new Waiters();
+    protected static WebDriver driver;
+    protected Waiters wait = new Waiters();
 
     public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
@@ -39,11 +39,7 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void clickOnElementWithJavaScript(WebElement element) {
+    public static void clickOnElementWithJavaScript(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-    }
-
-    public void clickOnButton(String buttonText) { //удалить. сделать на нужные страницы
-        clickOnElementWithJavaScript(getDeletionPopUp(buttonText));
     }
 }

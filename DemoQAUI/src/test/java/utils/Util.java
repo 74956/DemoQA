@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static pages.BasePage.clickOnElementWithJavaScript;
+
 public class Util {
-
     private static Waiters wait = new Waiters();
-
     public static int getRandomNumber(List<WebElement> list) {
         Random random = new Random();
         return random.nextInt(list.size() - 1) + 1;
@@ -26,7 +26,8 @@ public class Util {
         wait.visibilityOfAllElements(list);
         for (WebElement webElement : list) {
             if (webElement.getText().equals(elementName)) {
-                webElement.click();
+                clickOnElementWithJavaScript(webElement);
+                break;
             }
         }
     }

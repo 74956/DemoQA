@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private String userId;
+    private String userID;
     private String username;
 
     private List<BookModal> books;
 
     public String getUserId() {
-        return userId;
+        return userID;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.userID = userID;
     }
 
     public String getUsername() {
@@ -38,11 +38,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(books, user.books);
+        return Objects.equals(userID, user.userID) && Objects.equals(username, user.username) && Objects.equals(books, user.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, username, books);
+        return Objects.hash(userID, username, books);
     }
 }

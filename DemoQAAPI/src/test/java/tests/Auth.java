@@ -15,20 +15,21 @@ import service.ResponseService;
 public class Auth {
 
     private ResponseService responseService = new ResponseService();
+    private String userName = "Tati123";
+    private String password = "GjuxD89Kms!";
     @Test
     public void authTest() {
         //Using the preemptive directive of basic auth to send credentials to the server
-        RequestSpecification httpRequest = RestAssured.given().auth().preemptive().basic("Tati123", "GjuxD89Kms!");
+        RequestSpecification httpRequest = RestAssured.given().auth().preemptive().basic(userName, password);
         Response res = httpRequest.get("https://demoqa.com/Account/v1/Authorized");
         ResponseBody body = res.body();
         //Converting the response body to string
-        String rbdy = body.asString();
-        System.out.println("Data from the GET API- " + rbdy);
+
     }
 
     @Test
     public void addBooks(){
-        Response response = ResponseService.sendModel(Method.GET, String.valueOf(PathString.ALL_BOOKS), BookModal.class);
+        Response response = ResponseService.sendModel(Method.GET, String.valueOf(PathString.ALL_BOOKS), BookModal.class, token);
         Assert.assertEquals(response.getStatusCode(), StatusCode.OK.getCode());
     }
 }

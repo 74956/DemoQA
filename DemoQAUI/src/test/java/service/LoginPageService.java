@@ -17,7 +17,7 @@ public class LoginPageService extends BasePageService {
         loginPage.inputUserName(user.getUserName());
         logger.info("Input user password");
         loginPage.inputUserPassword(user.getPassword());
-        loginPage.getLogin();
+        loginPage.clickOnLogin();
         return new BookStorePageService(driver);
     }
     public LoginPageService logIn() {

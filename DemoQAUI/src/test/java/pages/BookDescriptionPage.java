@@ -8,10 +8,11 @@ public class BookDescriptionPage extends BasePage {
     public BookDescriptionPage(WebDriver webDriver) {
         super(webDriver);
     }
+
     //тут оставить только кнопку о добавлении в коллекцию
 
     public WebElement addIntoCollectionButton() {
-        return driver.findElement(By.xpath("//div[contains(@class,'right')]/button[@id='addNewRecordButton']"));
+        return driver.findElement(By.xpath("//button[text()='Add To Your Collection']"));
     }
 
     public WebElement getBookFields(String label) {
@@ -20,8 +21,9 @@ public class BookDescriptionPage extends BasePage {
     }
 
     public void clickOnAddBookButton() {
+        wait.fluentWaitElementToBeVisible(addIntoCollectionButton());
         scrollToElement(addIntoCollectionButton());
-        addIntoCollectionButton().click();
+        clickOnElementWithJavaScript(addIntoCollectionButton());
     }
 
     public String getBookFieldsText(String label) {
