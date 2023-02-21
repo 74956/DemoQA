@@ -12,7 +12,11 @@ public class BookDescriptionPage extends BasePage {
     //тут оставить только кнопку о добавлении в коллекцию
 
     public WebElement addIntoCollectionButton() {
-        return driver.findElement(By.xpath("//button[text()='Add To Your Collection']"));
+        return driver.findElement(By.xpath("//div[contains(@class,'right')]//button[@id='addNewRecordButton']"));
+    }
+
+    public WebElement backToStoreButton(){
+        return driver.findElement(By.xpath("//div[contains(@class,'left')]//button[@id='addNewRecordButton']"));
     }
 
     public WebElement getBookFields(String label) {
@@ -20,10 +24,20 @@ public class BookDescriptionPage extends BasePage {
         return driver.findElement(By.xpath(String.format("//label[contains(@id,'%s')]", label) + BOOK_LABEL_TEXT));
     }
 
+    public WebElement goToStoreButton(){
+        return driver.findElement(By.xpath("//button[@id='gotoStore']"));
+    }
+
     public void clickOnAddBookButton() {
         wait.fluentWaitElementToBeVisible(addIntoCollectionButton());
         scrollToElement(addIntoCollectionButton());
         clickOnElementWithJavaScript(addIntoCollectionButton());
+    }
+
+    public void clickOnBackToBookStoreButton() {
+        wait.fluentWaitElementToBeVisible(backToStoreButton());
+        scrollToElement(backToStoreButton());
+        clickOnElementWithJavaScript(backToStoreButton());
     }
 
     public String getBookFieldsText(String label) {
@@ -35,7 +49,11 @@ public class BookDescriptionPage extends BasePage {
     }
 
     public void clickOnBookStoreAppElement(String cardTitle) {
+        wait.visibilityOfElement(getBookStoreAppElement(cardTitle));
         getBookStoreAppElement(cardTitle).click();
     }
 
+    public void clickOnGoToStoreButton(){
+        clickOnElementWithJavaScript(goToStoreButton());
+    }
 }

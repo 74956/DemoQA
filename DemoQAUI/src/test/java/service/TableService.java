@@ -26,6 +26,11 @@ public class TableService extends BasePageService {
         return new BookDescriptionPageService(driver);
     }
 
+    public void clickOnNextButton(){
+        logger.info("Go to the next page");
+        table.clickOnNextButton();
+    }
+
     public ProfilePageService clickOnAddedBook(String bookName){
         logger.info("Open added book description");
         table.clickOnAddedBook(bookName);
@@ -37,17 +42,16 @@ public class TableService extends BasePageService {
     }
 
     public void deleteBook(String bookTitleDelete) {
-        List<WebElement> books = table.listOfBooks();
-        List<String> booksTitle = Util.getItemsNamesText(books);
+        List<String> booksTitle = getBooksFromProfileTable();
         for (String s : booksTitle) {
             if (s.equals(bookTitleDelete)) {
                 logger.info("Delete book - " + bookTitleDelete);
                 deleteElement();
             } else {
                 if (pagesWithBooks() > 1) {
-                    clickOnButton("Next");
-                    List<String> booksTitles = bookTitlesList();
-                    for (String title : booksTitles) {
+                    clickOnNextButton();
+                    List<String> booksTitleOnOtherPage = getBooksFromProfileTable();
+                    for (String title : booksTitleOnOtherPage) {
                         if (title.equals(bookTitleDelete)) {
                             logger.info("Delete book - " + title);
                             deleteElement();
@@ -59,7 +63,18 @@ public class TableService extends BasePageService {
     }
 
     private void deleteElement() {
-        table.getDeleteButton();
+        table.deleteBook();
         alertAndIframeUtil.alertAccept();
+    }
+
+    public List<String> getBooksFromProfileTable(){
+        List<WebElement> books = table.listOfAddedBooks();
+        return Util.getItemsNamesText(books);
+    }
+
+    public boolean isListOfBookInProfileEmpty(){
+        boolean result = table.isAnyBookExistInTable();
+        logger.info("Table with books is empty - " + result);
+        return result;
     }
 }

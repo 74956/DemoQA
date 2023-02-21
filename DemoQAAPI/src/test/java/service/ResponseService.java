@@ -35,11 +35,25 @@ public class ResponseService {
         return requestSpecification.request(method);
     }
 
-    public static Response sendModel(Method method, String path, Object model, Token bearerToken) {
+    public static Response getResponse(Method method, RequestSpecification requestSpecification) {
+        requestSpecification
+                .baseUri(PathString.SITE_URL.getPath())
+                .contentType(ContentType.JSON)
+                .log().uri()
+                .when()
+                .get()
+                .then()
+                .extract()
+                .response()
+                .prettyPrint();
+        return requestSpecification.request(method);
+    }
+
+    public static Response sendModel(Method method, String path, Object model) {
         RequestSpecification requestSpecification = given()
                 .basePath(path)
                 .body(GSON.toJson(model));
-        return getResponse(method, requestSpecification, bearerToken);
+        return getResponse(method, requestSpecification);
     }
 
 //    public static Response authResponse(Token bearerToken){

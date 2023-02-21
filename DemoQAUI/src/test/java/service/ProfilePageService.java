@@ -1,6 +1,7 @@
 package service;
 
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import pages.ProfilePage;
 import utils.AlertAndIframeUtil;
 
@@ -15,60 +16,9 @@ public class ProfilePageService extends BasePageService {
         this.profilePage = new ProfilePage(driver);
     }
 
-//    public List<String> bookTitlesList() {
-//        logger.info("Get list of books title added to profile");
-//        return profilePage.getBooksTitleFromProfile();
-//    }
-//
-//    public void deleteBook(String bookTitleDelete) {
-//        List<String> booksTitle = bookTitlesList();
-//        for (String s : booksTitle) {
-//            if (s.equals(bookTitleDelete)) {
-//                logger.info("Delete book - " + bookTitleDelete);
-//                deleteElement();
-//            } else {
-//                if (pagesWithBooks() > 1) {
-//                    clickOnButton("Next");
-//                    List<String> booksTitles = bookTitlesList();
-//                    for (String title : booksTitles) {
-//                        if (title.equals(bookTitleDelete)) {
-//                            logger.info("Delete book - " + title);
-//                            deleteElement();
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    public boolean ifBookExitInCollection(String bookTitle) {
-//        List<String> listOfBooks = bookTitlesList();
-//        for (String s : listOfBooks) {
-//            if (s.equals(bookTitle)) {
-//                logger.info("Added book - " + s);
-//                return true;
-//            } else {
-//                if (pagesWithBooks() > 1) {
-//                    clickOnButton("Next");
-//                    List<String> booksTitles = bookTitlesList();
-//                    for (String title : booksTitles) {
-//                        if (title.equals(bookTitle)) {
-//                            logger.info("Added book - " + title);
-//                            return true;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return false;
-//    }
-//
-//
-
-//
-//    private void deleteElement() {
-//
-//        clickOnButton("OK");
-//        alertAndIframeUtil.alertAccept();
-//    }
+    public LoginPage logout(){
+        logger.info("Log out from account");
+        profilePage.clickOnLogout();
+        return new LoginPage(driver);
+    }
 }

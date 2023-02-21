@@ -34,16 +34,41 @@ public class Table extends BasePage {
         return driver.findElement(By.xpath("//span[@title='Delete']/*[@stroke='currentColor']"));
     }
 
-//    public void clickOnAddedBook(String bookName) {
-//       getAddedBookFromProfile(bookName).click();
-//    }
+    public WebElement nextButton(){
+        return driver.findElement(By.xpath("//div[@class='-next']/button"));
+    }
+
+    public WebElement addedBook(String bookName){
+        return driver.findElement(By.xpath(String.format("//span[contains(@id,\"%s\")]//a", bookName)));
+    }
+
+    public WebElement acceptDeleteBookButton() {
+        return driver.findElement(By.xpath("//button[@id='closeSmallModal-ok']"));
+    }
+
+    public boolean isAnyBookExistInTable(){
+        return bookInTable().isEmpty();
+    }
+
+    public void clickOnAddedBook(String bookName) {
+       addedBook(bookName).click();
+    }
 
     public List<WebElement> listOfBooks() {
         return getBooks();
     }
 
-    public void deleteBook(String bookName) {
-        getDeleteButton(bookName).click();
+    public List<WebElement> listOfAddedBooks() {
+        return bookInTable();
+    }
+
+    public void deleteBook() {
+        getDeleteButton().click();
+        acceptDeleteBookButton().click();
+    }
+
+    public void clickOnNextButton(){
+        nextButton().click();
     }
 
 }

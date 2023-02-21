@@ -21,13 +21,26 @@ public class BookDescriptionPageService extends BasePageService {
         alertAndIframeUtil.alertAccept();
     }
 
+    public TableService clickOnBackToStoreButton() {
+        logger.info("Come back to profile");
+        bookDescriptionPage.clickOnBackToBookStoreButton();
+        return new TableService(driver);
+    }
+
     public ProfilePageService clickOnCard(String cardTitle) {
         logger.info("Click on " + cardTitle);
         bookDescriptionPage.clickOnBookStoreAppElement(cardTitle);
         return new ProfilePageService(driver);
     }
 
+    public BookStorePageService clickOnCardBookStore(String cardTitle) {
+        logger.info("Click on " + cardTitle);
+        bookDescriptionPage.clickOnBookStoreAppElement(cardTitle);
+        return new BookStorePageService(driver);
+    }
+
     public Book getActualBook() {
+        //create waiters
         Book book = new Book();
         book.setIsbn(bookDescriptionPage.getBookFieldsText("ISBN"));
         book.setTitle(bookDescriptionPage.getBookFieldsText("title"));
@@ -38,6 +51,12 @@ public class BookDescriptionPageService extends BasePageService {
         book.setDescription(bookDescriptionPage.getBookFieldsText("description").replaceAll("\\\\\"", "\""));
         book.setWebsite(bookDescriptionPage.getBookFieldsText("website"));
         return book;
+    }
+
+    public TableService clickOnGoToStoreButton() {
+        logger.info("Come back to profile");
+        bookDescriptionPage.clickOnGoToStoreButton();
+        return new TableService(driver);
     }
 
 }

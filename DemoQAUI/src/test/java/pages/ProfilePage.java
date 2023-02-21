@@ -9,7 +9,11 @@ public class ProfilePage extends BasePage {
         super(webDriver);
     }
 
+    public WebElement logout(){
+        return driver.findElement(By.xpath("//div[@id='books-wrapper']//button"));
+    }
 
-
-
+    public void clickOnLogout(){
+        logout().click();
+    }
 }
