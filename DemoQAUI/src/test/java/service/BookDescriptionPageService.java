@@ -35,7 +35,7 @@ public class BookDescriptionPageService extends BasePageService {
         book.setAuthor(bookDescriptionPage.getBookFieldsText("author"));
         book.setPublisher(bookDescriptionPage.getBookFieldsText("publisher"));
         book.setPages(bookDescriptionPage.getBookFieldsText("pages"));
-        book.setDescription(bookDescriptionPage.getBookFieldsText("description"));
+        book.setDescription(bookDescriptionPage.getBookFieldsText("description").replaceAll("\\\\\"", "\""));
         book.setWebsite(bookDescriptionPage.getBookFieldsText("website"));
         return book;
     }

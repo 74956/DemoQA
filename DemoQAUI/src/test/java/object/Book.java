@@ -1,5 +1,6 @@
 package object;
 
+
 import java.util.Objects;
 
 public class Book {
@@ -10,7 +11,9 @@ public class Book {
     private String author;
     private String publisher;
     private String pages;
+
     private String description;
+
     private String website;
 
     public String getIsbn() {
@@ -105,5 +108,19 @@ public class Book {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (website != null ? website.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", pages='" + pages + '\'' +
+                ", description='" + description + '\'' +
+                ", website='" + website + '\'' +
+                '}';
     }
 }

@@ -9,20 +9,7 @@ public class ProfilePage extends BasePage {
         super(webDriver);
     }
 
-    public WebElement getDeleteButton() {
-        return driver.findElement(By.xpath("//span[@id='delete-record-undefined']/*[@stroke='currentColor']"));
-    }
 
-    public WebElement getQuantityOfPage() {
-        return driver.findElement(By.xpath("//span[@class='-totalPages']"));
-    }
 
-    public void deleteBook() {
-        getDeleteButton().click();
-    }
 
-    public Integer quantityPagesInProfile() {
-        String getQuantity = getQuantityOfPage().getText();
-        return Integer.parseInt(getQuantity);
-    }
 }

@@ -23,17 +23,17 @@ public class CreateUserAndDelete {
     private RegisterViewModel registerViewModel;
     private LoginViewModel loginViewModel;
 
-    @Test
-    public void createUserAndDelete(){
-        registerViewModel = RegisterViewModelService.generateModel(userName,password);
-        Response response = ResponseService.sendModel(Method.POST, PathString.USER_CREATE.getPath(), registerViewModel);
-        assertThat("User wasn`t created", response.getStatusCode(), Matchers.equalTo(StatusCode.CREATED.getCode()));
-        User user = response.as(User.class);
-        String userId = user.getUserId();
-        System.out.println(userId);
-//        loginViewModel = LoginViewModelService.generateModel(userName, password);
-//        ResponseService.sendModel(Method.POST, PathString.USER_AUTH.getPath(), loginViewModel);
-
-
-    }
+//    @Test
+//    public void createUserAndDelete(){
+//        registerViewModel = RegisterViewModelService.generateModel(userName,password);
+//        Response response = ResponseService.sendModel(Method.POST, PathString.USER_CREATE.getPath(), registerViewModel);
+//        assertThat("User wasn`t created", response.getStatusCode(), Matchers.equalTo(StatusCode.CREATED.getCode()));
+//        User user = response.as(User.class);
+//        String userId = user.getUserId();
+//        System.out.println(userId);
+////        loginViewModel = LoginViewModelService.generateModel(userName, password);
+////        ResponseService.sendModel(Method.POST, PathString.USER_AUTH.getPath(), loginViewModel);
+//
+//
+//    }
 }

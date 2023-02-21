@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import pages.ProfilePage;
 import utils.AlertAndIframeUtil;
 
+import java.util.List;
+
 public class ProfilePageService extends BasePageService {
     private ProfilePage profilePage;
     private AlertAndIframeUtil alertAndIframeUtil = new AlertAndIframeUtil();
@@ -62,12 +64,10 @@ public class ProfilePageService extends BasePageService {
 //    }
 //
 //
-//    private Integer pagesWithBooks() {
-//        return profilePage.quantityPagesInProfile();
-//    }
+
 //
 //    private void deleteElement() {
-//        profilePage.deleteBook();
+//
 //        clickOnButton("OK");
 //        alertAndIframeUtil.alertAccept();
 //    }

@@ -1,27 +1,27 @@
 package utils;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
+import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 
 public class CsvReader {
 
-    public static List<List<String>> readCsvFile(File file) {
-        List<List<String>> records = new ArrayList<>();
-        try (CSVReader csvReader = new CSVReader(new FileReader(file))) {
-            String[] values;
-            while ((values = csvReader.readNext()) != null) {
-                records.add(Arrays.asList(values));
-            }
-        } catch (IOException | CsvValidationException e) {
+    public static  <T> List<T> readMapped(File file, Class<T> clazz, int skipLines) {
+        List<T> beans;
+        try {
+            beans = new CsvToBeanBuilder<T>(
+                    new FileReader(file))
+                    .withType(clazz).withSkipLines(skipLines)
+                    .withSeparator(';')
+                    .build()
+                    .parse();
+        } catch (IllegalStateException | IOException e) {
             throw new RuntimeException(e);
         }
-        return records;
+        return beans;
     }
 }
