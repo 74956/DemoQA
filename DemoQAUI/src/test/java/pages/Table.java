@@ -34,11 +34,11 @@ public class Table extends BasePage {
         return driver.findElement(By.xpath("//span[@title='Delete']/*[@stroke='currentColor']"));
     }
 
-    public WebElement nextButton(){
+    public WebElement nextButton() {
         return driver.findElement(By.xpath("//div[@class='-next']/button"));
     }
 
-    public WebElement addedBook(String bookName){
+    public WebElement addedBook(String bookName) {
         return driver.findElement(By.xpath(String.format("//span[contains(@id,\"%s\")]//a", bookName)));
     }
 
@@ -46,12 +46,12 @@ public class Table extends BasePage {
         return driver.findElement(By.xpath("//button[@id='closeSmallModal-ok']"));
     }
 
-    public boolean isAnyBookExistInTable(){
+    public boolean isAnyBookExistInTable() {
         return bookInTable().isEmpty();
     }
 
     public void clickOnAddedBook(String bookName) {
-       addedBook(bookName).click();
+        clickOnElementWithJavaScript(addedBook(bookName));
     }
 
     public List<WebElement> listOfBooks() {
@@ -67,7 +67,7 @@ public class Table extends BasePage {
         acceptDeleteBookButton().click();
     }
 
-    public void clickOnNextButton(){
+    public void clickOnNextButton() {
         nextButton().click();
     }
 

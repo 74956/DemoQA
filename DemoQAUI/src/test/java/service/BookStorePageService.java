@@ -24,4 +24,11 @@ public class BookStorePageService extends BasePageService {
         logger.info("User name is displayed - " + result);
         return result;
     }
+
+
+    public LoginPageService clickOnCardLogin(String cardTitle) {
+        logger.info("Click on " + cardTitle);
+       bookStorePage.clickOnBookStoreAppElement(cardTitle);
+        return new LoginPageService(driver);
+    }
 }

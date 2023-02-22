@@ -9,6 +9,7 @@ public class BookDescriptionPageService extends BasePageService {
 
     private BookDescriptionPage bookDescriptionPage;
     private AlertAndIframeUtil alertAndIframeUtil = new AlertAndIframeUtil();
+    private BookStorePageService bookStorePageService;
 
     public BookDescriptionPageService(WebDriver driver) {
         super(driver);
@@ -29,7 +30,7 @@ public class BookDescriptionPageService extends BasePageService {
 
     public ProfilePageService clickOnCard(String cardTitle) {
         logger.info("Click on " + cardTitle);
-        bookDescriptionPage.clickOnBookStoreAppElement(cardTitle);
+        bookDescriptionPage.clickOnBookStoreAppProfileElement(cardTitle);
         return new ProfilePageService(driver);
     }
 
@@ -40,7 +41,6 @@ public class BookDescriptionPageService extends BasePageService {
     }
 
     public Book getActualBook() {
-        //create waiters
         Book book = new Book();
         book.setIsbn(bookDescriptionPage.getBookFieldsText("ISBN"));
         book.setTitle(bookDescriptionPage.getBookFieldsText("title"));
@@ -57,6 +57,12 @@ public class BookDescriptionPageService extends BasePageService {
         logger.info("Come back to profile");
         bookDescriptionPage.clickOnGoToStoreButton();
         return new TableService(driver);
+    }
+
+    public LoginPageService clickOnCardLogin(String cardTitle) {
+        logger.info("Click on " + cardTitle);
+        bookDescriptionPage.clickOnBookStoreAppProfileElement(cardTitle);
+        return new LoginPageService(driver);
     }
 
 }

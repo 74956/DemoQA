@@ -5,7 +5,10 @@ import object.Book;
 import object.User;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import service.BookDescriptionPageService;
 import service.BookStorePageService;
 import service.HomePageService;
@@ -33,6 +36,7 @@ public class BookInCollection extends BaseTest {
 
     @BeforeClass
     public void init(){
+        bookDescriptionPageService = new BookDescriptionPageService(driver);
         homePageService = new HomePageService(driver);
         loginPageService = new LoginPageService(driver);
         tableService = new TableService(driver);
@@ -72,7 +76,12 @@ public class BookInCollection extends BaseTest {
 
     @Test
     public void deleteBooksFromCollection() {
-        tableService = bookDescriptionPageService.clickOnGoToStoreButton();
+        loginPageService = bookDescriptionPageService.clickOnCardLogin("Login");
+        bookStorePageService = bookDescriptionPageService.clickOnCardBookStore("Book Store");
+
+        bookDescriptionPageService = tableService.clickOnBook(secondBookName);
+        bookDescriptionPageService.clickOnAddBookIntoCollectionButton();
+        tableService = bookDescriptionPageService.clickOnBackToStoreButton();
 
         bookDescriptionPageService = tableService.clickOnBook(secondBookName);
         bookDescriptionPageService.clickOnAddBookIntoCollectionButton();

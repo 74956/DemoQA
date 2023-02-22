@@ -25,4 +25,13 @@ public class BookStorePage extends BasePage {
     public boolean isUserNameDisplayed() {
         return getVisibilityOfUserName().isDisplayed();
     }
+
+    public WebElement getBookStoreAppElement(String cardTitle) {
+        return driver.findElement(By.xpath(String.format("//*[contains(text(),'%s')]/parent::li", cardTitle)));
+    }
+
+    public void clickOnBookStoreAppElement(String cardTitle) {
+        wait.visibilityOfElement(getBookStoreAppElement(cardTitle));
+        getBookStoreAppElement(cardTitle).click();
+    }
 }

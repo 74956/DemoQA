@@ -10,6 +10,9 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 
+import java.io.Serializable;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class ResponseService {
@@ -72,4 +75,11 @@ public class ResponseService {
 //                        .extract()
 //                        .response();
 //    }
+
+    public static Response sendModelWithQueryParam(Method method, String path, Map<String, ? extends Serializable> map) {
+        RequestSpecification requestSpecification = given()
+                .basePath(path);
+        map.forEach(requestSpecification::queryParam);
+        return getResponse(method, requestSpecification);
+    }
 }

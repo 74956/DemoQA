@@ -26,12 +26,12 @@ public class TableService extends BasePageService {
         return new BookDescriptionPageService(driver);
     }
 
-    public void clickOnNextButton(){
+    public void clickOnNextButton() {
         logger.info("Go to the next page");
         table.clickOnNextButton();
     }
 
-    public ProfilePageService clickOnAddedBook(String bookName){
+    public ProfilePageService clickOnAddedBook(String bookName) {
         logger.info("Open added book description");
         table.clickOnAddedBook(bookName);
         return new ProfilePageService(driver);
@@ -67,12 +67,12 @@ public class TableService extends BasePageService {
         alertAndIframeUtil.alertAccept();
     }
 
-    public List<String> getBooksFromProfileTable(){
+    public List<String> getBooksFromProfileTable() {
         List<WebElement> books = table.listOfAddedBooks();
         return Util.getItemsNamesText(books);
     }
 
-    public boolean isListOfBookInProfileEmpty(){
+    public boolean isListOfBookInProfileEmpty() {
         boolean result = table.isAnyBookExistInTable();
         logger.info("Table with books is empty - " + result);
         return result;

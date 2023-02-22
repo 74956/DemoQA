@@ -14,27 +14,6 @@ public class BasePage {
         this.driver = webDriver;
     }
 
-    public WebElement getFooter() {
-        return driver.findElement(By.xpath("//footer"));
-    }
-
-    public WebElement getBookstoreAppItem(String itemName) {
-        return driver.findElement(By.xpath(String.format("//div[contains(@class,'collapse show')]//li[.//span[text()='%s']]",
-                itemName)));
-    }
-
-    public WebElement getDeletionPopUp(String buttonText) {
-        return driver.findElement(By.xpath(String.format("//button[contains(text(),'%s')]", buttonText)));
-    }
-
-    public boolean isFooterDisplayed() {
-        return getFooter().isDisplayed();
-    }
-
-    public void clickOnBookStoreAppItem(String itemName) {
-        getBookstoreAppItem(itemName).click();
-    }
-
     public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
