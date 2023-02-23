@@ -3,7 +3,8 @@ package Util;
 public enum PathString {
 
     URL("https://demoqa.com/"),
-    ALL_BOOKS("/BookStore/v1/Books");
+    ALL_BOOKS("/BookStore/v1/Books"),
+    BOOKS("/BookStore/v1/Books");
 
     private final String path;
 

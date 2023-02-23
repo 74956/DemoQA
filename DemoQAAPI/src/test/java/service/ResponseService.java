@@ -8,6 +8,8 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import model.LoginViewModel;
+import model.TokenViewModel;
 
 
 import java.io.Serializable;
@@ -56,6 +58,11 @@ public class ResponseService {
         RequestSpecification requestSpecification = given()
                 .basePath(path)
                 .body(GSON.toJson(model));
+        return getResponse(method, requestSpecification);
+    }
+    public static Response sendModel(Method method, String path) {
+        RequestSpecification requestSpecification = given()
+                .basePath(path);
         return getResponse(method, requestSpecification);
     }
 

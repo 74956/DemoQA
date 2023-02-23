@@ -7,7 +7,8 @@ public enum PathString {
     TOKEN("/Account/v1/GenerateToken"),
     USER_CREATE("/Account/v1/User"),
     USER_AUTH("/Account/v1/Authorized"),
-    DELETE_USER("/Account/v1/User/{id}");
+    DELETE_USER("/Account/v1/User/{id}"),
+    BOOKS("/BookStore/v1/Books");
 
     private final String path;
 
