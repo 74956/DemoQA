@@ -1,13 +1,9 @@
 package service.base;
 
-import Enums.PathString;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import model.AuthService;
-import model.LoginViewModel;
-import service.auth.AuthEndpoint;
 
 public class BaseService {
 

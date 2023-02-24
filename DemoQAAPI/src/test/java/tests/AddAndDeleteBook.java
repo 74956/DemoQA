@@ -1,7 +1,5 @@
 package tests;
 
-import Enums.PathString;
-import Enums.StatusCode;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import model.AddListOfBooks;

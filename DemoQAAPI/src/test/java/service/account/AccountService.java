@@ -1,4 +1,4 @@
-package service;
+package service.account;
 
 public class AccountService {
 }

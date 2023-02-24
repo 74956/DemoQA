@@ -1,6 +1,5 @@
 package service;
 
-import Enums.PathString;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.restassured.RestAssured;
