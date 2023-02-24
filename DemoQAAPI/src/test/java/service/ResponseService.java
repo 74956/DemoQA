@@ -1,15 +1,13 @@
 package service;
 
 import Enums.PathString;
-import ch.qos.logback.core.subst.Token;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import model.LoginViewModel;
-import model.TokenViewModel;
 
 
 import java.io.Serializable;
@@ -20,16 +18,13 @@ import static io.restassured.RestAssured.given;
 public class ResponseService {
     public static final Gson GSON = new GsonBuilder().create();
 
-    public static Response getResponse(Method method, RequestSpecification requestSpecification, Token bearerToken) {
+    public static Response getResponse(Method method, RequestSpecification requestSpecification, String bearerToken) {
         requestSpecification
                 .headers("Authorization",
-                                "Bearer " + bearerToken,
-                                "Content-Type",
-                                ContentType.JSON,
-                                "Accept",
-                                ContentType.JSON)
+                        "Bearer " + bearerToken,
+                        "Content-Type",
+                        ContentType.JSON)
                 .baseUri(PathString.SITE_URL.getPath())
-                .contentType(ContentType.JSON)
                 .log().uri()
                 .when()
                 .get()
@@ -60,28 +55,27 @@ public class ResponseService {
                 .body(GSON.toJson(model));
         return getResponse(method, requestSpecification);
     }
+
+    public static Response sendModel(Method method, String path, Object model, String token) {
+        RequestSpecification requestSpecification = given()
+                .basePath(path)
+                .body(GSON.toJson(model));
+        return getResponse(method, requestSpecification, token);
+    }
+
     public static Response sendModel(Method method, String path) {
         RequestSpecification requestSpecification = given()
                 .basePath(path);
         return getResponse(method, requestSpecification);
     }
 
-//    public static Response authResponse(Token bearerToken){
-//        return given()
-//                        .headers(
-//                                "Authorization",
-//                                "Bearer " + bearerToken,
-//                                "Content-Type",
-//                                ContentType.JSON,
-//                                "Accept",
-//                                ContentType.JSON)
-//                        .when()
-//                        .get(PathString.SITE_URL.getPath() + PathString.TOKEN.getPath())
-//                        .then()
-//                        .contentType(ContentType.JSON)
-//                        .extract()
-//                        .response();
-//    }
+    public static void authResponse(String bearerToken) {
+        RestAssured.given()
+                .headers(
+                        "Authorization",
+                        "Bearer " + bearerToken,
+                        "Content-Type", "application/json");
+    }
 
     public static Response sendModelWithQueryParam(Method method, String path, Map<String, ? extends Serializable> map) {
         RequestSpecification requestSpecification = given()
