@@ -16,4 +16,15 @@ public class BasePageService {
         this.driver = driver;
         this.basePage = new BasePage(driver);
     }
+
+    public <T extends BasePageService> T clickOnCard(String cardTitle, Class<T> clazz) {
+        basePage.clickOnBookStoreAppProfileElement(cardTitle);
+        T service;
+        try {
+            service = clazz.getConstructor(WebDriver.class).newInstance(driver);
+        } catch (Exception e) {
+            throw new RuntimeException(String.format("Could not create '%s' service!", clazz.getSimpleName()));
+        }
+        return service;
+    }
 }

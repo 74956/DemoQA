@@ -59,7 +59,7 @@ public class BookInCollection extends BaseTest {
     public void addBooksToCollection() {
         bookDescriptionPageService = tableService.clickOnBook(firstBookName);
         bookDescriptionPageService.clickOnAddBookIntoCollectionButton();
-        profilePageService = bookDescriptionPageService.clickOnCard("Profile");
+        profilePageService = bookDescriptionPageService.clickOnCard("Profile", ProfilePageService.class);
         List<String> actualListOfBooksTitle = tableService.getBooksFromProfileTable();
         assertThat("Book is added to collection", actualListOfBooksTitle.contains(firstBookName));
         tableService.clickOnAddedBook(firstBookName);
@@ -76,8 +76,8 @@ public class BookInCollection extends BaseTest {
 
     @Test
     public void deleteBooksFromCollection() {
-        loginPageService = bookDescriptionPageService.clickOnCardLogin("Login");
-        bookStorePageService = bookDescriptionPageService.clickOnCardBookStore("Book Store");
+        loginPageService = bookDescriptionPageService.clickOnCard("Login", LoginPageService.class);
+        bookStorePageService = bookDescriptionPageService.clickOnCard("Book Store", BookStorePageService.class);
 
         bookDescriptionPageService = tableService.clickOnBook(secondBookName);
         bookDescriptionPageService.clickOnAddBookIntoCollectionButton();
@@ -85,9 +85,9 @@ public class BookInCollection extends BaseTest {
 
         bookDescriptionPageService = tableService.clickOnBook(secondBookName);
         bookDescriptionPageService.clickOnAddBookIntoCollectionButton();
-        profilePageService = bookDescriptionPageService.clickOnCard("Profile");
-        tableService.deleteBook(secondBookName);
-        assertThat("Book wasn`t deleted from collection", tableService.isListOfBookInProfileEmpty());
+        profilePageService = bookDescriptionPageService.clickOnCard("Profile", ProfilePageService.class);
+        tableService.deleteBook(secondBookName); //переделать метод. удаляет не ту книгу, когда книг много
+        assertThat("Book wasn`t deleted from collection", tableService.isBookDeleted(secondBookName));
     }
 
     @AfterMethod

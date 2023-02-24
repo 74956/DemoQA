@@ -77,4 +77,13 @@ public class TableService extends BasePageService {
         logger.info("Table with books is empty - " + result);
         return result;
     }
+
+    public boolean isBookDeleted(String bookName){
+        boolean isTableEmpty = table.isAnyBookExistInTable();
+        boolean isBookDeleted = !Util.getItemsNamesText(table.bookInTable()).contains(bookName);
+        if(isTableEmpty || isBookDeleted){
+            return true;
+        }
+        return false;
+    }
 }

@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.Util;
 
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class Table extends BasePage {
     }
 
     public WebElement getDeleteButton() {
-        return driver.findElement(By.xpath("//span[@title='Delete']/*[@stroke='currentColor']"));
+        return driver.findElement(By.xpath("//span[@title='Delete']/*[@stroke='currentColor']/*"));
     }
 
     public WebElement nextButton() {

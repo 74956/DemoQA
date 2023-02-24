@@ -21,4 +21,18 @@ public class BasePage {
     public static void clickOnElementWithJavaScript(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
+
+    public String getBookAppElement(String cardTitle) {
+        return String.format("//*[text()='%s']/parent::li", cardTitle);
+    }
+
+    public WebElement getBookStoreAppProfileElement(String cardTitle) {
+        String BOOK_APP_ELEMENT = getBookAppElement(cardTitle);
+        return driver.findElement(By.xpath(BOOK_APP_ELEMENT));
+    }
+
+    public void clickOnBookStoreAppProfileElement(String cardTitle) {
+        wait.visibilityOfElement(getBookStoreAppProfileElement(cardTitle));
+        clickOnElementWithJavaScript(getBookStoreAppProfileElement(cardTitle));
+    }
 }
