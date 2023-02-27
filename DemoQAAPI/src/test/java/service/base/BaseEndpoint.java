@@ -12,6 +12,4 @@ public enum BaseEndpoint {
     public String getPath() {
         return path;
     }
-
-
 }

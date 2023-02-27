@@ -1,50 +1,57 @@
-package service.auth;
+package service.book;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import model.LoginViewModel;
-import model.TokenViewModel;
+import model.*;
 import org.apache.hc.core5.http.HttpStatus;
 import service.base.BaseEndpoint;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class AuthService {
+public class BookNoneAuthService {
 
     private RequestSpecification requestSpecification;
-    private RequestSpecification requestSpec;
 
-    public AuthService() {
+    public BookNoneAuthService() {
         this.requestSpecification = getRequestSpecification();
     }
 
     public RequestSpecification getRequestSpecification(){
         String baseUrl = BaseEndpoint.SITE_URL.getPath();
         RequestSpecBuilder builder = new RequestSpecBuilder()
+                .log(LogDetail.ALL)
                 .setBaseUri(baseUrl)
                 .setContentType(ContentType.JSON);
-        requestSpec = builder.build();
-        return requestSpec;
+        requestSpecification = builder.build();
+        return requestSpecification;
     }
 
-    public Response generateToken(LoginViewModel loginViewModel) {
-        String url = AuthEndpoint.GENERATE_TOKEN.getPath();
+    public Response getAllBooks() {
+        String url = BookEndpoint.ALL_BOOKS.getUrl();
         return RestAssured
                 .given()
                 .spec(requestSpecification)
                 .when()
-                .body(loginViewModel)
-                .post(url);
+                .get(url);
     }
 
-    public TokenViewModel getToken(LoginViewModel loginViewModel) {
-        return generateToken(loginViewModel)
+    public AllBooksModal getBooks(){
+        return getAllBooks()
                 .then()
                 .statusCode(HttpStatus.SC_OK)
-                .and()
                 .extract()
-                .as(TokenViewModel.class);
+                .as(AllBooksModal.class);
     }
+
+    public String getBookIsbn(AllBooksModal allBooksModal, String bookName){
+        List<String> isbnList = allBooksModal.getBooks().stream().filter(bookModal -> bookModal.getTitle().
+                equals(bookName)).map(BookModal::getIsbn).collect(Collectors.toList());
+        return isbnList.stream().findAny().get();
+    }
+
 }
