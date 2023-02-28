@@ -1,13 +1,13 @@
 package tests;
 
-import Util.GetProperties;
+import util.GetProperties;
 import model.*;
 import org.testng.annotations.Test;
 import service.account.AccountService;
 import service.book.BookNoneAuthService;
 import service.book.BookService;
 
-public class AddAndDeleteBook extends BaseTest{
+public class AddAndDeleteBookTest extends BaseTest{
 
     private BookNoneAuthService bookNoneAuthService;
     private AccountService accountService;

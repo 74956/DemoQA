@@ -1,6 +1,6 @@
 package tests;
 
-import Util.GetProperties;
+import util.GetProperties;
 import model.LoginViewModel;
 import model.TokenViewModel;
 import org.apache.commons.lang3.reflect.ConstructorUtils;

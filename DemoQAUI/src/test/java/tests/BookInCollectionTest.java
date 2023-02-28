@@ -23,7 +23,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class BookInCollection extends BaseTest {
+public class BookInCollectionTest extends BaseTest {
 
     private BookDescriptionPageService bookDescriptionPageService;
     private HomePageService homePageService;
