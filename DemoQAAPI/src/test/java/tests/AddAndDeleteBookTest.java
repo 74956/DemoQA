@@ -16,7 +16,7 @@ public class AddAndDeleteBookTest extends BaseTest{
 
     @Test
     public void addAndDeleteBook() {
-        LoginViewModel loginViewModel = AccountService.generateModel(userName, password);
+//        LoginViewModel loginViewModel = AccountService.generateModel(userName, password);
 
         bookNoneAuthService = new BookNoneAuthService();
         AllBooksModal allBooksModal = bookNoneAuthService.getBooks();

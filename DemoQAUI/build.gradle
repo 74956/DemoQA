@@ -34,8 +34,7 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-rest-assured:2.18.1'
     testImplementation 'io.qameta.allure:allure-java-commons:2.18.1'
     testImplementation 'io.qameta.allure:allure-testng:2.18.1'
-
-
+    testImplementation 'org.aspectj:aspectjweaver:1.9.7'
 }
 
 repositories {
